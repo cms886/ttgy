@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'df_user',
     'goods',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +78,8 @@ WSGI_APPLICATION = 'tiantian.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tiantian',
+    'ENGINE': 'django.db.backends.mysql',
+    'NAME': 'tiantian',
 	'POST':'3306',
 	'HOST':'192.168.201.27',
 	'USER':'root',
@@ -86,6 +87,12 @@ DATABASES = {
     }
 }
 
+#添加副文本编辑器
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'advanced',
+    'width': 600,
+    'height': 400,
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -127,3 +134,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static')
 ]
+#开发阶段 上传文件 目录
+MEDIA_ROOT = os.path.join(BASE_DIR,'static')
