@@ -18,6 +18,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 from goods import views
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^index/$',include('goods.urls'))
+    url(r'^admin/', admin.site.urls),  
+    url(r'^user/',include('df_user.urls')),
+    url(r'^index/$',include('goods.urls')),
 ]
