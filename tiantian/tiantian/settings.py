@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'tiantian.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'tiantian',
+	'POST':'3306',
+	'HOST':'192.168.201.27',
+	'USER':'root',
+	'PASSWORD':'123456',
     }
 }
 
