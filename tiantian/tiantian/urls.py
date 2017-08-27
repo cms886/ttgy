@@ -20,7 +20,7 @@ from goods import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),  
     url(r'^user/',include('df_user.urls')),
-    url(r'^index/$',include('goods.urls')),
+    url(r'^goods/',include('goods.urls')),
     #添加 副文本 编辑器
     url(r'^tinymce/', include('tinymce.urls')),
 ]
