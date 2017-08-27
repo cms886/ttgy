@@ -80,8 +80,9 @@
 			<ul class="goods_list fl">
                 {% for sg in xxsg %}
 				<li>
-					<h4><a href="">{{ sg.gtitle }}</a></h4>
-					<a href="#"><img src="/static/{{ sg.gimage}}"></a>
+					<h4><a href="{%url 'goods:detail' sg.id %}">{{ sg.gtitle }}</a></h4>
+{#                    {%url 'tiantian:detail' sg.id %}#}
+					<a href="{%url 'goods:detail' sg.id %}"><img src="/static/{{ sg.gimage}}"></a>
 					<div class="prize">¥ {{ sg.gprice }}</div>
 				</li>
                 {% endfor %}
@@ -105,8 +106,8 @@
 			<ul class="goods_list fl">
                 {% for sg in hxsc %}
 				<li>
-					<h4><a href="#">{{ sg.gtitle }}</a></h4>
-					<a href="#"><img src="/static/{{ sg.gimage}}"></a>
+					<h4><a href="{%url 'goods:detail' sg.id %}">{{ sg.gtitle }}</a></h4>
+					<a href="{%url 'goods:detail' sg.id %}"><img src="/static/{{ sg.gimage}}"></a>
 					<div class="prize">¥ {{ sg.gprice }}</div>
 				</li>
 				{% endfor %}
@@ -133,8 +134,8 @@
 			<ul class="goods_list fl">
                 {% for sg in zrny %}
 				<li>
-					<h4><a href="#">{{ sg.gtitle }}</a></h4>
-					<a href="#"><img src="/static/{{ sg.gimage}}"></a>
+					<h4><a href="{%url 'goods:detail' sg.id %}">{{ sg.gtitle }}</a></h4>
+					<a href="{%url 'goods:detail' sg.id %}"><img src="/static/{{ sg.gimage}}"></a>
 					<div class="prize">¥ {{ sg.gprice }}</div>
 				</li>
 				{% endfor %}
@@ -159,8 +160,8 @@
 			<ul class="goods_list fl">
                 {% for sg in qldp %}
 				<li>
-					<h4><a href="#">{{ sg.gtitle }}</a></h4>
-					<a href="#"><img src="/static/{{ sg.gimage}}"></a>
+					<h4><a href="{%url 'goods:detail' sg.id %}">{{ sg.gtitle }}</a></h4>
+					<a href="{%url 'goods:detail' sg.id %}"><img src="/static/{{ sg.gimage}}"></a>
 					<div class="prize">¥ {{ sg.gprice }}</div>
 				</li>
                 {% endfor %}
@@ -185,8 +186,8 @@
 			<ul class="goods_list fl">
                  {% for sg in xxsc %}
 				<li>
-					<h4><a href="#">{{ sg.gtitle }}</a></h4>
-					<a href="#"><img src="/static/{{ sg.gimage}}"></a>
+					<h4><a href="{%url 'goods:detail' sg.id %}">{{ sg.gtitle }}</a></h4>
+					<a href="{%url 'goods:detail' sg.id %}"><img src="/static/{{ sg.gimage}}"></a>
 					<div class="prize">¥ {{ sg.gprice }}</div>
 				</li>
                 {% endfor %}
@@ -211,8 +212,8 @@
 			<ul class="goods_list fl">
                   {% for sg in sdsp %}
 				<li>
-					<h4><a href="#">{{ sg.gtitle }}</a></h4>
-					<a href="#"><img src="/static/{{ sg.gimage}}"></a>
+					<h4><a href="{%url 'goods:detail' sg.id %}">{{ sg.gtitle }}</a></h4>
+					<a href="{%url 'goods:detail' sg.id %}"><img src="/static/{{ sg.gimage}}"></a>
 					<div class="prize">¥ {{ sg.gprice }}</div>
 				</li>
                 {% endfor %}
