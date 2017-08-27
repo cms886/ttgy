@@ -27,7 +27,6 @@ def index(request):
     sdsp = sp.goodsinfo_set.all().order_by('-gtime')[:4]
 
     return render(request,'index.html',context={'goods':goods,'xxsg':xxsg,'hxsc':hxsc,'zrny':zrny,'qldp':qldp,'xxsc':xxsc,'sdsp':sdsp})
-    #return render(request,'index.html',context={'goods':goods,'xxsg':xxsg})
 
 
 
