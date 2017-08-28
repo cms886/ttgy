@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import TypeInfo,GoodsInfo
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator,EmptyPage
 def index(request):
     #商品类
     goods = TypeInfo.objects.all().order_by()[:6]  # 取出最新信息前6条
@@ -33,22 +33,35 @@ def index(request):
 def detail(request,id):
     return render(request,'detail.html')
 
-
 #全部list
 def goodslist(request, pIndex):
+    #新品推荐
+    tj = GoodsInfo.objects.filter(gtj=True).order_by('-gtime')[:2]
+    #分页显示
     list1 = GoodsInfo.objects.all()
     p = Paginator(list1,15)
     if pIndex == '':
         pIndex = '1'
     pIndex = int(pIndex)
+    #取第几分页对象
     list2 = p.page(pIndex)
     plist = p.page_range
-    #上一页
-    return render(request, 'list.html', {'list': list2, 'plist': plist, 'pIndex': pIndex})
+    return render(request, 'list.html', {'list': list2, 'plist': plist, 'pIndex': pIndex,'tj':tj})
 
-def typelist(request, typeid):
+def typelist(request,typeid):
     r = TypeInfo(id=typeid)
-    p = r.goodsinfo_set.all()
-    return render(request, 'typelist.html', {'list': p})
+    jgj = r.goodsinfo_set.all()
+    # paginator = Paginator(jgj, 15)  # Show 25 contacts per page
+    # page = request.GET.get('page')
+    # try:
+    #     contacts = paginator.page(page)
+    # except PageNotAnInteger:
+    #     contacts = paginator.page(1)
+    # except EmptyPage:
+    #     contacts = paginator.page(paginator.num_pages)
+
+    # 取第几分页对象
+    return render(request, 'typelist.html', {'list': jgj})
+
 
 
