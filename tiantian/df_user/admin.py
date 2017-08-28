@@ -1,3 +1,3 @@
 from django.contrib import admin
 
-admin.site.register(UserInfo)
+# Register your models here.
