@@ -1,34 +1,33 @@
 {% extends 'idl.html'%}
 {% block head%}
-	<script type="text/javascript" src="/static/js/jquery-1.12.2.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
 	<script type="text/javascript">
-		var $add_x = $('#add_cart').offset().top;
-		var $add_y = $('#add_cart').offset().left;
+{#		var $add_x = $('#add_cart').offset().top;#}
+{#		var $add_y = $('#add_cart').offset().left;#}
+{##}
+{#		var $to_x = $('#show_count').offset().top;#}
+{#		var $to_y = $('#show_count').offset().left;#}
+{#		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})#}
+{#        $(".add_cart").click(function(){#}
+{#            if($('.login_btn').text().indexOf('denglu')>=0){#}
+{#                alert('please login')#}
+{#                location.href='/user/login/';#}
+{#                return#}
+{#            }#}
 
-		var $to_x = $('#show_count').offset().top;
-		var $to_y = $('#show_count').offset().left;
-
-		$(".add_jump").css({'left':$add_y+80,'top':$add_x+10,'display':'block'})
-        $(".add_cart").click(function(){
-            if($('.login_btn').text().indexOf('denglu')>=0){
-                alert('please login')
-                location.href='/user/login/';
-                return
-            }
-
-			$(".add_jump").stop().animate({
-				'left': $to_y+7,
-				'top': $to_x+7},
-				"fast", function() {
-					$(".add_jump").fadeOut('fast',function(){
-						$('#show_count').html(2);
-					});
-			});
-            num = parseInt($('.num_show').val());
-            $.get('/cart/add{{ g.id }}_'+num+'/',function(data){
-                $('#show_count').text(data.count)
-            });
-        })
+{#			$(".add_jump").stop().animate({#}
+{#				'left': $to_y+7,#}
+{#				'top': $to_x+7},#}
+{#				"fast", function() {#}
+{#					$(".add_jump").fadeOut('fast',function(){#}
+{#						$('#show_count').html(2);#}
+{#					});#}
+{#			});#}
+{#            num = parseInt($('.num_show').val());#}
+{#            $.get('/cart/add{{ g.id }}_'+num+'/',function(data){#}
+{#                $('#show_count').text(data.count)#}
+{#            });#}
+{#        })#}
 
 
         var totalPrice;
@@ -100,19 +99,33 @@
 			<div class="goods_num clearfix">
 				<div class="num_name fl" >数 量：</div>
 				<div >
+                     <input type="hidden" id="gid" value="{{ goodsinfo.id }}">
                     <input type="button" id="btn1" value="-" onclick="sub()">
                     <input type="text" name="val" value="1" id="gcount">
                     <input type="button" id="btn2" value="+" onclick="add()">
 				</div>
 			</div>
-			<div class="total">总价：<span id="totalprice"></span></div>
+			<div class="total">总价：<span id="totalprice"> </span></div>
 			<div class="operate_btn">
 				<a href="javascript:;" class="buy_btn">立即购买</a>
-				<a href="cart/" class="add_cart" id="add_cart">加入购物车</a>
+				<a  onclick="Hot()" class="add_cart" id="add_cart">加入购物车</a>
 			</div>
 		</div>
 	</div>
-
+<script type="text/javascript">
+function Hot(){
+   var  gid = $('#gid').val()
+   var  gcount = $('#gcount').val()
+   $.post("/cart/gwc/",
+        {
+          gid:gid,
+          gcount:gcount
+        },
+        function(data){
+            alert(data)
+        });
+}
+</script>
 	<div class="main_wrap clearfix">
 		<div class="l_wrap fl clearfix">
 			<div class="new_goods">
