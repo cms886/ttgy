@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http import HttpResponse
 from .models import TypeInfo,GoodsInfo
 from django.core.paginator import Paginator,EmptyPage
@@ -31,7 +31,9 @@ def index(request):
 
 
 def detail(request,id):
-    return render(request,'detail.html')
+    goodsinfo = get_object_or_404(GoodsInfo,id = id)
+    return render(request,'detail.html',context={'goodsinfo':goodsinfo})
+
 
 #全部list
 def goodslist(request, pIndex):
