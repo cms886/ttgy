@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),  
     url(r'^user/',include('df_user.urls')),
     url(r'^goods/',include('goods.urls')),
+    url(r'^cart/',include('df_cart.urls')),
     #添加 副文本 编辑器
     url(r'^tinymce/', include('tinymce.urls')),
 ]

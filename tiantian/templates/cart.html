@@ -13,11 +13,11 @@
 		<li class="col06">操作</li>
 	</ul>
 
-    {%  for i in  list%}
+
 	<ul class="cart_list_td clearfix">
 		<li class="col01"><input type="checkbox" name="" checked></li>
-		<li class="col02"><img src="images/goods/goods003.jpg"></li>
-		<li class="col03"> {{ i.title }}<br><em>16.80元/500g</em></li>
+		<li class="col02"><img src="/static/{{ i.gimage }}"></li>
+		<li class="col03"> {{ i.gtitle }}<br><em>{{ i.gprice }}/{{ i.gunit }}</em></li>
 		<li class="col04">500g</li>
 		<li class="col05">16.80元</li>
 		<li class="col06">
@@ -30,7 +30,7 @@
 		<li class="col07">16.80元</li>
 		<li class="col08"><a href="javascript:;">删除</a></li>
 	</ul>
-	  {% endfor %}
+
 
 	<ul class="settlements">
 		<li class="col01"><input type="checkbox" name="" checked=""></li>

@@ -82,10 +82,11 @@
 		<a href="#">全部分类</a>
 		<span>></span>
 		<a href="#">新鲜水果</a>
-		<span>></span>
+		<span></span>
 		<a href="#">商品详情</a>
 	</div>
-
+    <form action="" method ="post">
+        {% csrf_token %}
 	<div class="goods_detail_con clearfix">
 		<div class="goods_detail_pic fl"><img src="/static/{{ goodsinfo.gimage }}" width="350" height="350sss"></div>
 
@@ -93,13 +94,13 @@
 			<h3>{{ goodsinfo.gtitle }}</h3>
 			<p>{{ goodsinfo.gdigest }}</p>
 			<div class="prize_bar">
-				<span class="show_pirze">¥<em>{{ goodsinfo.gprice }}</em></span>
+				<span class="show_pirze" id="gprice">¥<em>{{ goodsinfo.gprice }}</em></span>
 				<span class="show_unit">单  位：{{ goodsinfo.gunit }}</span>
 			</div>
 			<div class="goods_num clearfix">
 				<div class="num_name fl" >数 量：</div>
 				<div >
-                     <input type="hidden" id="gid" value="{{ goodsinfo.id }}">
+                    <input type="hidden" id="gid" value="{{ goodsinfo.id }}">
                     <input type="button" id="btn1" value="-" onclick="sub()">
                     <input type="text" name="val" value="1" id="gcount">
                     <input type="button" id="btn2" value="+" onclick="add()">
@@ -109,9 +110,11 @@
 			<div class="operate_btn">
 				<a href="javascript:;" class="buy_btn">立即购买</a>
 				<a  onclick="Hot()" class="add_cart" id="add_cart">加入购物车</a>
+                <input type="submit" name="addcar" value="addcar">
 			</div>
 		</div>
 	</div>
+    </form>
 <script type="text/javascript">
 function Hot(){
    var  gid = $('#gid').val()
