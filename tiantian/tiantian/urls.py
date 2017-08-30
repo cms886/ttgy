@@ -24,4 +24,6 @@ urlpatterns = [
     url(r'^cart/',include('df_cart.urls')),
     #添加 副文本 编辑器
     url(r'^tinymce/', include('tinymce.urls')),
+    #添加索引
+    url(r'^search/',include('haystack.urls')),
 ]

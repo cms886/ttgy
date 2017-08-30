@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'goods',
     'tinymce',
     'df_cart',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,15 @@ STATICFILES_DIRS=[
 ]
 #开发阶段 上传文件 目录
 MEDIA_ROOT = os.path.join(BASE_DIR,'static')
+
+
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    }
+}
+
+#自动生成索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'

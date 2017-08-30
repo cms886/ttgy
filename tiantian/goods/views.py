@@ -83,5 +83,9 @@ def typelist(request,typeid,bq):
         jgj = r.goodsinfo_set.all().order_by('-gclick')
     return render(request, 'typelist.html', {'list': jgj,'typeid':typeid})
 
+def mysearch(request):
+    return render(request,'mysearch.html')
+
+
 
 

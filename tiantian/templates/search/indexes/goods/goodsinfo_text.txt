@@ -1,0 +1,7 @@
+{{object.id}}
+{{object.gimage}}
+{{object.gtitle}}
+{{object.gdigest}}
+{{object.ginfo}}
+{{object.gunit}}
+{{object.price}}
