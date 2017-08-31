@@ -16,7 +16,7 @@ def index(request):
 #判断账号是否被注册
 def register_exist(request):
     uname = request.GET.get('uname')
-    print(request,request.GET,666666666666666666666666666666666666666)
+    # print(request,request.GET,666666666666666666666666666666666666666)
     count = UserInfo.objects.filter(uname=uname).count()
     print(count)
     return JsonResponse({'count':count})
@@ -93,9 +93,11 @@ def info(request):
     goods_ids = request.COOKIES.get('goods_ids','')
     goods_ids1 = goods_ids.split(',')
     goods_list = []
-    for goods_id in goods_ids1:
-        print(goods_id,type(goods_id))
-        goods_list.append(GoodsInfo.objects.get(id=int(goods_id)))
+    if goods_ids1 != ['']:
+        print(goods_ids1)
+        for goods_id in goods_ids1:
+            print(goods_id,type(goods_id))
+            goods_list.append(GoodsInfo.objects.get(id=int(goods_id)))
 
     context = {
         # 'title':'用户中心',
