@@ -1,24 +1,27 @@
+//页面加载完毕后触发，相当于$(document).ready(function(){})
 $(function(){
-
 	var error_name = false;
 	var error_password = false;
 	var error_check_password = false;
 	var error_email = false;
 	var error_check = false;
 
-
+//    用户名失去焦点事件
 	$('#user_name').blur(function() {
 		check_user_name();
 	});
 
+//    密码失去焦点
 	$('#pwd').blur(function() {
 		check_pwd();
 	});
 
+//    重新输入密码失去焦点事件
 	$('#cpwd').blur(function() {
 		check_cpwd();
 	});
 
+//    邮箱失去焦点事件
 	$('#email').blur(function() {
 		check_email();
 	});
@@ -37,8 +40,10 @@ $(function(){
 		}
 	});
 
-
+    //用户名失去焦点时候触发此函数
 	function check_user_name(){
+
+        //判断用户名是否符合要求,符合则进行的判断是否被注册
 		var len = $('#user_name').val().length;
 		if(len<5||len>20)
 		{
@@ -48,8 +53,15 @@ $(function(){
 		}
 		else
 		{
-			$('#user_name').next().hide();
-			error_name = false;
+		    $.get('/user/register_exist/?uname='+$('#user_name').val(),function (data){
+		        if(data.count==1){
+		            $('#user_name').next().html('用户名已存在').show();
+		            error_name = true;
+		        }else{
+			        $('#user_name').next().hide();
+			        error_name = false;
+                }
+            });
 		}
 	}
 
@@ -65,7 +77,7 @@ $(function(){
 		{
 			$('#pwd').next().hide();
 			error_password = false;
-		}		
+		}
 	}
 
 
@@ -83,8 +95,8 @@ $(function(){
 		{
 			$('#cpwd').next().hide();
 			error_check_password = false;
-		}		
-		
+		}
+
 	}
 
 	function check_email(){
