@@ -113,9 +113,10 @@ def user_center_info(request):
     goods_ids = request.COOKIES.get('goods_ids', '')
     goods_ids1 = goods_ids.split(',')
     goods_list = []
-    for goods_id in goods_ids1:
-        print(goods_id, type(goods_id))
-        goods_list.append(GoodsInfo.objects.get(id=int(goods_id)))
+    if goods_ids1 != ['']:
+        for goods_id in goods_ids1:
+            print(goods_id, type(goods_id))
+            goods_list.append(GoodsInfo.objects.get(id=int(goods_id)))
     context = {
         # 'title':'用户中心',
         'user_mail': user_mail,
