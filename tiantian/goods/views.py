@@ -31,8 +31,25 @@ def index(request):
 
 
 def detail(request,id):
+    goods = GoodsInfo.objects.get(pk=int(id))
     goodsinfo = get_object_or_404(GoodsInfo,id = id)
-    return render(request,'detail.html',context={'goodsinfo':goodsinfo})
+    response = render(request,'detail.html',context={'goodsinfo':goodsinfo})
+    goods_ids = request.COOKIES.get('goods_ids','')
+    goods_id = '%d'%goods.id
+    if goods_ids != '':
+        goods_ids1 = goods_ids.split(',')
+        if goods_ids1.count(goods_id)>=1:
+            goods_ids1.remove(goods_id)
+        goods_ids1.insert(0,goods_id)
+        if len(goods_ids1)>=6:
+            del goods_ids1[5]
+        goods_ids = ','.join(goods_ids1)
+    else:
+        goods_ids = goods_id
+
+    print(goods_ids)
+    response.set_cookie('goods_ids',goods_ids)
+    return response
 
 
 #全部list
