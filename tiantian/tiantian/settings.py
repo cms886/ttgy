@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'goods',
     'tinymce',
     'df_cart',
+    'df_order',
     'haystack',
 ]
 
