@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^tinymce/', include('tinymce.urls')),
     #添加索引
     url(r'^search/',include('haystack.urls')),
+    url(r'^order/',include('df_order.urls')),
 ]
