@@ -63,7 +63,7 @@
     {% for list in list %}
 	<ul class="cart_list_td clearfix" id="{{ list.id }}" >
 		<li class="col01"><input type="checkbox" class="cart_id" id="cart_id"></li>
-		<li class="col02"><img src="/static/{{ list.goods.gimage }}"></li>
+		<li class="col02"><a href="/goods/detail/{{ list.goods.id  }}"><img src="/static/{{ list.goods.gimage }}"></a></li>
 
 {#        <input type="hidden" value="{{ list.goods.gprice }}" id="p" class="danjia">#}
         <input type="hidden" value="{{ leng }}" id="leng">
