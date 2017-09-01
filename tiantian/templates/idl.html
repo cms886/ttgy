@@ -18,12 +18,15 @@
 					欢迎您：<em>张 山</em>
 				</div>
 				<div class="login_btn fl">
-					<a href="/user/login/">登录</a>
-					<span>|</span>
-					<a href="/user/register/">注册</a>
 
-                    <span>|</span>
-					<a href="/goods/">退出</a>
+                     {% if request.session.user_name %}
+                           {{ request.session.user_name }}<span>|</span><a href="/goods/">退出</a>
+                     {% else %}
+                        <a href="/user/login/">登录</a>
+
+                        <a href="/user/register/">注册</a>
+
+                    {% endif %}
 				</div>
 				<div class="user_link fl">
 					<span>|</span>
