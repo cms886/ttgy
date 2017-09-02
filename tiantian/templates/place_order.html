@@ -1,5 +1,23 @@
 {% extends 'idl.html'%}
+
 {% block head%}
+<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        var sum = 0;
+        var yun = parseFloat($('#freight').attr('value'))
+{#        alert(yun)#}
+        $('.col07').each(function(){
+
+
+            var a = parseFloat($(this).text())
+            sum = sum+a;
+        })
+        sums.innerHTML = sum
+        shi.innerHTML = sum+yun
+    })
+
+    </script>
 
 {% endblock head%}
 {%block body%}
@@ -54,14 +72,16 @@
 	</div>
 
 	<h3 class="common_title">总金额结算</h3>
+{#    {% for c in carts %}#}
 
 	<div class="common_list_con clearfix">
 		<div class="settle_con">
-			<div class="total_goods_count">共<em>2</em>件商品，总金额<b>42.60元</b></div>
-			<div class="transit">运费：<b>10元</b></div>
-			<div class="total_pay">实付款：<b>52.60元</b></div>
+			<div class="total_goods_count">共<em>{{ count }}</em>件商品，总金额<b id="sums">元</b></div>
+			<div class="transit" id="freight" value="10">运费：<b>10元</b></div>
+			<div class="total_pay">实付款：<b id="shi">元</b></div>
 		</div>
 	</div>
+
 
 	<div class="order_submit clearfix">
 		<a href="javascript:;" id="order_btn">提交订单</a>
@@ -73,19 +93,5 @@
 		
 		<div class="mask"></div>
 	</div>
-	<script type="text/javascript" src="js/jquery-1.12.2.js"></script>
-	<script type="text/javascript">
-		$('#order_btn').click(function() {
-			localStorage.setItem('order_finish',2);
 
-			$('.popup_con').fadeIn('fast', function() {
-				setTimeout(function(){
-					$('.popup_con').fadeOut('fast',function(){
-						window.location.href = 'index.html';
-					});	
-				},3000)
-				
-			});
-		});
-	</script>
 {%endblock body%}
