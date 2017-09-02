@@ -11,6 +11,8 @@ def place(request):
 	#order = request.GET.getlist('cart_id')
 	uid = request.session['user_id']
 	carts = CartInfo.objects.filter(user_id=uid)
-	context = {'carts':carts}
+	a =  CartInfo.objects.filter(user_id=uid).count()
+	# print(a)
+	context = {'carts':carts,'count':a}
 	return render(request,'place_order.html',context)
 
