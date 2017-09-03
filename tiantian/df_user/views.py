@@ -6,6 +6,7 @@ from hashlib import sha1
 from django.http import JsonResponse
 import django
 from goods.models import GoodsInfo
+from df_order.models  import OrderInfo,OrderDetailInfo
 
 #进入注册页面
 def index(request):
@@ -127,7 +128,50 @@ def user_center_info(request):
 
 #点击全部订单
 def user_center_order(request):
-    return render(request,'df_user/user_center_order.html')
+    uid = request.session['user_id']
+    # print(uid)
+    # 拿到登录用户所有的订单
+    allorders = OrderInfo.objects.filter(user_id = uid)
+    # print(allorders)
+    for i in allorders:
+        # 拿到所有的订单号和时间
+        dingdan=i.oid
+        time = i.odate
+        # print(i)
+        # print(dingdan,time)
+        # 拿到每个订单号所对应的所有商品
+        all = OrderDetailInfo.objects.filter(order_id = i.oid)
+        print(all)
+        for j in all:
+            # print(j.goods_id)
+            # 拿到每个商品的数量
+            count = j.count
+            danjia = j.price
+            # print(j)
+            # print(count,danjia)
+            #  拿到每个商品的goods_id,传给goodsinfo,拿到商品的名称
+            goodid = j.goods_id
+            # print(goodid)
+            goods = GoodsInfo.objects.filter(id = goodid)
+            print(goods)
+            for h in goods:
+                gtitle = h.gtitle
+                gunit = h.gunit
+                gprice = h.gprice
+                gimage = h.gimage
+                # print(gtitle,gunit,gprice,gimage)
+    context = {
+        # 'dingdan':dingdan,'time':time,'count':count,'danjia':danjia,'gtitle':gtitle
+        'allorders':allorders,'all':all,'goods':goods
+
+    }
+    return render(request,'df_user/user_center_order.html',context)
+    # date = allorders.odate
+    # allprice = allorders.ototal
+    # print(date,allprice)
+
+    # print(all)
+    # return render(request,'df_user/user_center_order.html')
 
 #点击送货地址
 def user_center_site(request):
@@ -150,3 +194,7 @@ def user_center_site_add(request):
     user.uphone = phone
     user.save()
     return render(request,'df_user/user_center_site.html',{'user':user})
+# def logout(request):
+#     response = HttpResponse('您已退出')
+#     response.delete_cookie('uname')
+#     return redirect('/user/login/')
