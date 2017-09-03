@@ -15,15 +15,18 @@
 					欢迎您：<em>张 山</em>
 				</div>
 				<div class="login_btn fl">
-					<a href="/user/login/">登录</a>
-					<span>|</span>
-					<a href="/user/register/">注册</a>
+                     {% if request.session.user_name %}
+                           {{ request.session.user_name }}<span>|</span><a href="/user/logout/">退出</a>
+                     {% else %}
+                        <a href="/user/login/">登录</a>
+                        <a href="/user/register/">注册</a>
+                    {% endif %}
 				</div>
 				<div class="user_link fl">
 					<span>|</span>
 					<a href="/user/user_center_info/">用户中心</a>
 					<span>|</span>
-					<a href="cart.html">我的购物车</a>
+					<a href="/cart/showcar/">我的购物车</a>
 					<span>|</span>
 					<a href="user_center_order.html">我的订单</a>
 				</div>
@@ -35,8 +38,10 @@
 		<a href="/goods/" class="logo fl"><img src="/static/images/logo.png"></a>
 		<div class="sub_page_name fl">|&nbsp;&nbsp;&nbsp;&nbsp;用户中心</div>
 		<div class="search_con fr">
-			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
-			<input type="button" class="input_btn fr" name="" value="搜索">
+		 <form method="get" action="/search/">
+			<input type="text" class="input_text fl" name="q" placeholder="搜索商品">
+			<input type="submit" class="input_btn fr" name="" value="搜索">
+            </form>
 		</div>
 	</div>
 

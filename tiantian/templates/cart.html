@@ -68,7 +68,7 @@
 {#        <input type="hidden" value="{{ list.goods.gprice }}" id="p" class="danjia">#}
         <input type="hidden" value="{{ leng }}" id="leng">
 
-		<li class="col03">{{ list.goods.gtitle }}<br><em>/{{ list.goods.gunit }}/{{ list.goods.gprice }}</em></li>
+		<li class="col03">{{ list.goods.gtitle }}<br><em style="color: #da260e">库存（{{ list.goods.gkucun }})</em></li>
 		<li class="col04">{{ list.goods.gunit }}</li>
 		<li class="col05">{{ list.goods.gprice }}</li>
 		<li class="col06">
@@ -126,6 +126,7 @@
             var s = parseInt(num) * parseInt(danjia)
 {#            var aa = $(this).parents('li').eq(7).text(s)#}
             var qq = $(this).parent().parent().next().text(s)
+            alltoal()
             var cid =$(this).prev().prev().val()
             $.post("/cart/addnum/",
                 {
@@ -138,14 +139,19 @@
             );
         })
 
+
         $('.btn1').click(function(){
             var textobj=$(this).prev()
-
             textobj[0].value=parseInt(textobj[0].value)-1
             var num = textobj[0].value
+            if (num<=1){
+                textobj[0].value = 1
+                num = 1
+            }
             var danjia =$(this).prev().prev().prev().val()
             var s = parseInt(num) * parseInt(danjia)
             var qq = $(this).parent().parent().next().text(s)
+            alltotal()
             var cid =$(this).prev().prev().prev().prev().val()
             $.post("/cart/addnum/",
                 {

@@ -20,10 +20,9 @@
 				<div class="login_btn fl">
 
                      {% if request.session.user_name %}
-                           {{ request.session.user_name }}<span>|</span><a href="/goods/">退出</a>
+                           {{ request.session.user_name }}<span>|</span><a href="/user/logout/">退出</a>
                      {% else %}
                         <a href="/user/login/">登录</a>
-
                         <a href="/user/register/">注册</a>
 
                     {% endif %}
